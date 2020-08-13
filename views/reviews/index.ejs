@@ -1,0 +1,74 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 style="text-align: center">Review Page: <%= player.name %></h1>
+            <a href="/players/<%= player._id %>">Go back to the player page</a>
+            <div class="thumbnail">
+                <div class="caption-full">
+                    <% if (player.rating === 0) { %>
+                    <h5>
+                        <em>No reviews yet.</em>
+                    </h5>
+                    <% } else { %>
+                    <p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star <% if (player.rating > 1.5) { %> checked <% } %>"></span>
+                        <span class="fa fa-star <% if (player.rating > 2.5) { %> checked <% } %>"></span>
+                        <span class="fa fa-star <% if (player.rating > 3.5) { %> checked <% } %>"></span>
+                        <span class="fa fa-star <% if (player.rating > 4.5) { %> checked <% } %>"></span>
+						<span class="fa fa-star <% if (player.rating > 5.5) { %> checked <% } %>"></span>
+                        <span class="fa fa-star <% if (player.rating > 6.5) { %> checked <% } %>"></span>
+                        <span class="fa fa-star <% if (player.rating > 7.5) { %> checked <% } %>"></span>
+                        <span class="fa fa-star <% if (player.rating > 8.5) { %> checked <% } %>"></span>
+						<span class="fa fa-star <% if (player.rating > 9.5) { %> checked <% } %>"></span>
+                        <em>(total reviews: <%= player.reviews.length %>)</em>
+                    </p>
+                    <p class="text">
+                        Current player rating: <strong><%= player.rating.toFixed(2) %></strong>
+                    </p>
+					<h4 class="text">All reviews for this player:</h4>
+                    <hr style="margin-top: 0;">
+                    <% player.reviews.forEach(function(review){ %>
+                            <div class="row">
+                        <div class="col-md-6">
+                            <%- '<span class="fa fa-star checked"></span>'.repeat(review.rating) %><%- '<span class="fa fa-star"></span>'.repeat(10 - review.rating) %>
+							
+                            <div>Review by: <strong><%= review.author.username %></strong></div>
+							
+                            <span><em><%= review.updatedAt.toDateString() %></em><em> <em><%= moment(review.createdAt).fromNow() %></em></em></span>
+						
+                        </div>
+                         <div class="col-md-12">
+                            <p class="text" style="text-align: justify; word-wrap: break-word;">
+								<br>
+                                <%= review.text %>
+                            </p>
+                            <% if(currentUser && review.author.id.equals(currentUser._id)|| currentUser && currentUser.isAdmin){ %>
+                            <a class="btn btn-xs btn-warning"
+                               href="/players/<%=player._id %>/reviews/<%=review._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/players/<%=player._id %>/reviews/<%=review._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                            <% } %>
+                        </div>
+                    </div>
+                    <hr>
+                    <% }); %>
+                    <% } %>
+                    <div>
+                        <a class="btn btn-primary <% if (currentUser && player.reviews.some(function (review) {return review.author.id.equals(currentUser._id)})) { %> disabled <% } %>" href="/players/<%= player._id %>/reviews/new">
+                            Write a New Review</a>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a class="btn btn-default" href="/players/<%= player._id %>"><i class="fa fa-arrow-left"></i> Go back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Review section-->
+
+
+<%- include("../partials/footer") %>

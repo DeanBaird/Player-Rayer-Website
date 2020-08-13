@@ -1,0 +1,84 @@
+<%- include("../partials/header") %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">New Review: <%= player.name %></h1>
+        <div style="width: 60%; margin: 25px auto;">
+            <form action="/players/<%= player._id %>/reviews" method="POST">
+                <div class="form-group">
+                    <label for="rating">Leave a rating:</label>
+                    <fieldset class="starability-basic form-group" id="rating">
+					<div>
+                    <input type="radio" id="first-rate10" name="review[rating]" value="10" checked />
+                    <label for="first-rate10" title="10 stars - Amazing">
+                        <%- '<span class="fa fa-star checked"></span>'.repeat(10) %>
+                    </label>
+                    </div>
+                    <div>
+                    <input type="radio" id="first-rate9" name="review[rating]" value="9" />
+                    <label for="first-rate9" title="9 stars - Very good">
+                        <%- '<span class="fa fa-star checked"></span>'.repeat(9) %>
+                    </label>
+                    </div>
+                    <div>
+                    <input type="radio" id="first-rate8" name="review[rating]" value="8" />
+                    <label for="first-rate8" title="8 stars - Average">
+                        <%- '<span class="fa fa-star checked"></span>'.repeat(8) %>
+                    </label>
+                    </div>
+                    <div>
+                    <input type="radio" id="first-rate7" name="review[rating]" value="7" />
+                    <label for="first-rate7" title="7 stars - Not good">
+                        <%- '<span class="fa fa-star checked"></span>'.repeat(7) %>
+                    </label>
+                    </div>
+                    <div>
+                    <input type="radio" id="first-rate6" name="review[rating]" value="6" />
+                    <label for="first-rate6" title="6 star - Terrible">
+                        <%- '<span class="fa fa-star checked"></span>'.repeat(6) %>
+                    </label>
+                </div>
+                    <div>
+                    <input type="radio" id="first-rate5" name="review[rating]" value="5" checked />
+                    <label for="first-rate5" title="5 stars - Amazing">
+                        <%- '<span class="fa fa-star checked"></span>'.repeat(5) %>
+                    </label>
+                    </div>
+                    <div>
+                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                    <label for="first-rate4" title="4 stars - Very good">
+                        <%- '<span class="fa fa-star checked"></span>'.repeat(4) %>
+                    </label>
+                    </div>
+                    <div>
+                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                    <label for="first-rate3" title="3 stars - Average">
+                        <%- '<span class="fa fa-star checked"></span>'.repeat(3) %>
+                    </label>
+                    </div>
+                    <div>
+                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                    <label for="first-rate2" title="2 stars - Not good">
+                        <%- '<span class="fa fa-star checked"></span>'.repeat(2) %>
+                    </label>
+                    </div>
+                    <div>
+                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                    <label for="first-rate1" title="1 star - Terrible">
+                        <%- '<span class="fa fa-star checked"></span>'.repeat(1) %>
+                    </label>
+                </div>
+                        
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" type="text" name="review[text]" placeholder="Write a review for this player..." rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block">Submit a Review</button>
+                </div>
+            </form>
+            <a href="/players/<%= player._id %>">Go Back</a>
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer") %>

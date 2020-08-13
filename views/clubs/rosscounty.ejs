@@ -1,0 +1,77 @@
+<%- include("../partials/header") %>
+
+
+
+     <header class="jumbotron rosscounty">
+         <div class="container">
+             <h1>Welcome To Player Rater!</h1>
+             <p>View and rate current SPFL Premiership players</p>
+            <% if(currentUser && currentUser.isAdmin){ %>
+				<p>
+                	<a class="btn btn-primary btn-large" href="/players/new">Add New Player</a>
+             	</p>
+			<%}%>
+         </div>
+     </header>
+
+ <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Player Ratings</p>
+            <div class="list-group">
+                
+                <a href = "/clubs/aberdeen" class="list-group-item">Aberdeen FC</a>
+                <a href = "/clubs/celtic" class="list-group-item">Celtic FC</a>
+				<a href = "/clubs/dundeeunited" class="list-group-item">Dundee United FC</a>
+                <a href = "/clubs/hamiltonacademical" class="list-group-item">Hamilton Academical FC</a>
+                <a href = "/clubs/hibernian" class="list-group-item">Hibernian FC</a>
+				<a href = "/clubs/kilmarnock" class="list-group-item">Kilmarnock FC</a>
+                <a href = "/clubs/livingston" class="list-group-item">Livingston FC</a>
+                <a href = "/clubs/motherwell" class="list-group-item">Motherwell FC</a>
+				<a href = "/clubs/rangers" class="list-group-item">Rangers FC</a>
+                <a href = "/clubs/rosscounty" class="list-group-item active">Ross County</a>
+                <a href = "/clubs/stjohnstone" class="list-group-item">St.Johnstone FC</a>
+				<a href = "/clubs/stmirren" class="list-group-item">St.Mirren FC</a>
+            </div>
+        </div>
+     
+   
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% players.forEach(function(player){ %>
+		  <% if (player.team === "Ross County") { %>
+            <div class="col-md-4 col-sm-6">
+                <div class="thumbnail rosscounty">
+					
+                   <img class="img-fluid" alt="Responsive image" src="<%= player.image %>">
+                   <div class="caption">
+                       <h4 class="rosscounty"><%= player.name %></h4>
+					   <% if (player.rating === 0) { %>
+                    <em class="rosscounty">No reviews yet.</em>
+                    <% } else { %>
+                    <span class="fa fa-star checked"></span>
+                    	<span class="fa fa-star <% if (player.rating > 1.5) { %> checked <% } %>"></span>
+                    	<span class="fa fa-star <% if (player.rating > 2.5) { %> checked <% } %>"></span>
+                    	<span class="fa fa-star <% if (player.rating > 3.5) { %> checked <% } %>"></span>
+                        <span class="fa fa-star <% if (player.rating > 4.5) { %> checked <% } %>"></span>
+						<span class="fa fa-star <% if (player.rating > 5.5) { %> checked <% } %>"></span>
+                        <span class="fa fa-star <% if (player.rating > 6.5) { %> checked <% } %>"></span>
+                        <span class="fa fa-star <% if (player.rating > 7.5) { %> checked <% } %>"></span>
+                        <span class="fa fa-star <% if (player.rating > 8.5) { %> checked <% } %>"></span>
+						<span class="fa fa-star <% if (player.rating > 9.5) { %> checked <% } %>"></span>
+                    <% } %>
+                   </div>
+                   <p>
+                       <a href="/players/<%= player._id %>" class="btn btn-default">More Info</a>
+                   </p>
+					
+			
+                </div>
+				 
+            </div>
+		 <% } %>
+        <% }); %>
+	
+    </div>
+	 	 
+
+
+<%- include("../partials/footer") %>
