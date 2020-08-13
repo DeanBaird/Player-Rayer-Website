@@ -12,6 +12,8 @@ var express     = require("express"),
     seedDB      = require("./seeds");
 		
 
+
+
 // REQUIRING ROUTES 
 
 var commentRoutes 		= require("./routes/comments"),
@@ -26,7 +28,16 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useUnifiedTopology', true);
 
 
-mongoose.connect('mongodb://localhost:27017/player_ratings', { useNewUrlParser: true });
+// mongoose.connect('mongodb://localhost:27017/player_ratings', { useNewUrlParser: true });
+
+mongoose.connect('mongodb+srv://DeanBaird:Buddies100!@cluster0.soczx.mongodb.net/<dbname>?retryWrites=true&w=majority', { 
+	useNewUrlParser: true ,
+	useCreateIndex: true	
+}).then(() => {
+	console.log("connected to db")
+}).catch(err =>{
+	console.log("ERROR:", err.message);
+});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
