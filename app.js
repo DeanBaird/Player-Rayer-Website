@@ -73,6 +73,7 @@ app.use("/clubs", clubRoutes);
 app.use("/players/:id/comments", commentRoutes);
 app.use("/players/:id/reviews", reviewRoutes);
 
-app.listen(3000, function(){
-		console.log("Server has started");
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
+ console.log("Server Has Started!");
 });
