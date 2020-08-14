@@ -40,16 +40,6 @@ mongoose.connect(process.env.DATABASEURL, {
 	console.log("ERROR:", err.message);
 });
 
-// mongoose.connect('mongodb://localhost:27017/player_ratings', { useNewUrlParser: true });
-
-// mongoose.connect('mongodb+srv://DeanBaird:Buddies100!@cluster0.soczx.mongodb.net/<dbname>?retryWrites=true&w=majority', { 
-// 	useNewUrlParser: true ,
-// 	useCreateIndex: true	
-// }).then(() => {
-// 	console.log("connected to db")
-// }).catch(err =>{
-// 	console.log("ERROR:", err.message);
-// });
 
 
 
