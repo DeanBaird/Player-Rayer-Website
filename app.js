@@ -31,7 +31,14 @@ mongoose.set('useUnifiedTopology', true);
 
 
 
-mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASEURL, { 
+	useNewUrlParser: true ,
+	useCreateIndex: true	
+}).then(() => {
+	console.log("connected to db")
+}).catch(err =>{
+	console.log("ERROR:", err.message);
+});
 
 // mongoose.connect('mongodb://localhost:27017/player_ratings', { useNewUrlParser: true });
 
