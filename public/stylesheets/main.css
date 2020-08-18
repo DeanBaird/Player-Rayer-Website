@@ -19,9 +19,15 @@
 
 .thumbnail img {
     height:250px;
-    width:100%;
+    max-width:100%;
 }
 
+.col-sm-6 img{
+	height:250px;
+    width:363px;
+	
+	
+}
 .checked {
     color: #f9bc15;
 }

@@ -31,7 +31,8 @@ mongoose.set('useUnifiedTopology', true);
 
 
 
-mongoose.connect(process.env.DATABASEURL, { 
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/player_ratings";
+mongoose.connect(url, { 
 	useNewUrlParser: true ,
 	useCreateIndex: true	
 }).then(() => {
@@ -39,7 +40,6 @@ mongoose.connect(process.env.DATABASEURL, {
 }).catch(err =>{
 	console.log("ERROR:", err.message);
 });
-
 
 
 
